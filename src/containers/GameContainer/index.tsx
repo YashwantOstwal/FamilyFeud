@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect } from 'react';
 import HeaderView from '@views/HeaderView';
 import AnswersView from '@views/AnswersView';
 import InputView from '@views/InputView';
@@ -44,11 +44,11 @@ const GameContainer: React.FC = () => {
   const [time, setTime] = useState<number>(40);
   const [score, setScore] = useState<number>(0);
   const [guesses, setGuesses] = useState<string[]>([]);
-  // useEffect(() => {
-  //   setTimeout(() => {
-  //     setTime(time - 1);
-  //   }, 1000);
-  // }, [time]);
+  useEffect(() => {
+    setTimeout(() => {
+      setTime(time - 1);
+    }, 1000);
+  }, [time]);
 
   return (
     <div className='h-screen bg-[#172554] flex flex-col justify-between items-center'>
