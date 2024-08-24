@@ -1,5 +1,4 @@
 import React from 'react';
-import { AnimatePresence, motion } from 'framer-motion';
 import Answer from '@components/base/Answer';
 import Cover from '@components/base/Cover';
 interface CoveredAnswerProps {

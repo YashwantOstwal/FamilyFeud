@@ -52,7 +52,7 @@ const GameContainer: React.FC = () => {
 
   return (
     <div className='h-screen bg-[#172554] flex flex-col justify-between items-center'>
-      {time > 0 ? (
+      {time >= 0 ? (
         <>
           <HeaderView question={data.question} seconds={time} score={score} />
           <AnswersView guesses={guesses} setScore={setScore} answers={data.answers} score={score} />
