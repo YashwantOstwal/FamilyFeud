@@ -16,6 +16,16 @@
 @tailwind components;
 @tailwind utilities;
 
+.anton-semiregular {
+  font-family: 'Anton', sans-serif;
+  font-weight: 300;
+  font-style: normal;
+}
+.anton-light {
+  font-family: 'Anton', sans-serif;
+  font-weight: 200;
+  font-style: normal;
+}
 .anton-regular {
   font-family: 'Anton', sans-serif;
   font-weight: 400;

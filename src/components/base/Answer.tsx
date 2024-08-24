@@ -6,8 +6,10 @@ interface AnswerProps {
 const Answer: React.FC<AnswerProps> = ({ answer, points }) => {
   return (
     <>
-      <span className='w-4/6 flex justify-center items-center capitalize'>{answer}</span>
-      <span className='w-2/6 text-center flex justify-center items-center bg-blue-900'>{points}</span>
+      <span className='w-9/12 flex justify-center items-center capitalize bg-[#013c9f]'>{answer}</span>
+      <span className='w-3/12 text-center flex justify-center items-center bg-gradient-to-b from-[#6491df] from-30% to-[#135acf]'>
+        {points}
+      </span>
     </>
   );
 };
