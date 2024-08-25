@@ -1,6 +1,6 @@
 import React from 'react';
 interface ButtonProps {
-  className: string;
+  className?: string;
   children: string;
   onClick: () => void;
 }

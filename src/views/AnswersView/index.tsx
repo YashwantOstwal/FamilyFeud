@@ -10,9 +10,10 @@ interface AnswersViewProps {
   score: number;
 }
 const AnswersView: React.FC<AnswersViewProps> = ({ answers, guesses, setScore, score }) => {
+  //outline outline-2 outline-offset-4  outline-[#fff300]
   return (
     <>
-      <div className='w-[32vw] max-w-[900px] max-h-[500px] h-[19vw] border-[#353633] border-4 ring-1 ring-black/40 oswald-500 outline outline-1 outline-offset-2 outline-[#fff300]'>
+      <div className='w-[32vw] max-w-[900px] max-h-[500px] h-[19vw] border border-white outline-offset-4 outline outline-black outline-2 ring-4 ring-[#353633] oswald-500 '>
         <div className='h-3/4 grid grid-rows-3 grid-cols-2 grid-flow-col oswald-500 text-[2.1vw] text-white'>
           {answers.map((ele, index) => (
             <div key={ele.answer} className='relative border-white border-2 h-full flex'>
@@ -20,7 +21,7 @@ const AnswersView: React.FC<AnswersViewProps> = ({ answers, guesses, setScore, s
             </div>
           ))}
         </div>
-        <div className='h-1/4 flex justify-center items-center bg-white text-[3vw] text-[#D0D6E0] poppins-bold bg-gradient-to-b from-[#6491df] to-[#135acf]'>
+        <div className='h-1/4 flex justify-center items-center bg-white text-[3vw] text-white poppins-bold bg-gradient-to-b from-[#6491df] to-[#135acf] border-2 border-white select-none'>
           DOUBLE POINTS
         </div>
       </div>
