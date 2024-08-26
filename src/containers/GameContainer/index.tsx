@@ -44,7 +44,7 @@ const GameContainer: React.FC = () => {
       },
     ],
   };
-  const [time, setTime] = useState<number>(5);
+  const [time, setTime] = useState<number>(40);
   const [score, setScore] = useState<number>(0);
   const [guesses, setGuesses] = useState<string[]>([]);
   const [started, setStarted] = useState<boolean>(false);
