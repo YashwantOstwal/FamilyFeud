@@ -1,4 +1,4 @@
-import React, { SetStateAction } from 'react';
+import React from 'react';
 import Answer from '@components/base/Answer';
 import Cover from '@components/base/Cover';
 interface CoveredAnswerProps {
