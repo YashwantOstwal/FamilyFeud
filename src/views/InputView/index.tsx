@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { motion } from 'framer-motion';
 import Button from '@components/base/Button';
 import UpperArrowSVG from '@components/base/UpperArrow';
@@ -9,13 +9,15 @@ interface InputViewProps {
   started: boolean;
 }
 const InputView: React.FC<InputViewProps> = ({ setGuesses, guesses, started }) => {
-  const [inputText, setInputText] = useState('');
+  const inputText = useRef('');
   const handleChange = (input: string) => {
-    setInputText(input.toLowerCase());
+    inputText.current = input.toLowerCase();
   };
 
   const handleClick = () => {
-    setGuesses([...guesses, inputText]);
+    if (!guesses.includes(inputText.current)) {
+      setGuesses([...guesses, inputText.current]);
+    }
   };
   return (
     <motion.div

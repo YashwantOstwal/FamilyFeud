@@ -6,7 +6,7 @@ const ScoreCard = ({ score, started }: { score?: number; started: boolean }) => 
       initial={{ opacity: 0 }}
       animate={{ opacity: started ? 1 : 0 }}
       transition={{ delay: 0.5 }}
-      className='text-center text-white'
+      className='text-center text-white text-[1.5vw]'
     >
       {score}
     </motion.div>

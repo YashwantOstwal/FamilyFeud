@@ -47,6 +47,12 @@ const GameContainer: React.FC = () => {
   const [score, setScore] = useState<number>(0);
   const [guesses, setGuesses] = useState<string[]>([]);
   const [started, setStarted] = useState<boolean>(false);
+  useEffect(() => {
+    const element = data.answers.find((element) => {
+      return element.answer == guesses[guesses.length - 1];
+    });
+    element && setScore(element.points + score);
+  }, [guesses]);
   // useEffect(() => {
   //   setTimeout(() => {
   //     setTime(time - 1);

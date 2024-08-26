@@ -17,7 +17,7 @@ const AnswersView: React.FC<AnswersViewProps> = ({ answers, guesses, setScore, s
         <div className='h-3/4 grid grid-rows-3 grid-cols-2 grid-flow-col oswald-500 text-[2.1vw] text-white'>
           {answers.map((ele, index) => (
             <div key={ele.answer} className='relative border-white border-2 h-full flex'>
-              <CoveredAnswer answer={ele.answer} index={index} score={score} guesses={guesses} points={ele.points} />
+              <CoveredAnswer answer={ele.answer} index={index} guesses={guesses} points={ele.points} />
             </div>
           ))}
         </div>
