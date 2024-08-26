@@ -63,7 +63,7 @@ const GameContainer: React.FC = () => {
           setTime((prevState) => --prevState);
         }, 1000);
       }
-    }, 0);
+    }, 1000);
   }, [started]);
   if (time == 0) {
     clearInterval(interval);
