@@ -8,7 +8,7 @@ const Button: React.FC<ButtonProps> = ({ className, children, onClick }) => {
   return (
     <button
       style={{ boxShadow: '0px 2px 4px 0px inset #86a272' }}
-      className={`relative rounded-md oswald-500 text-white shadow-md shadow-black text-[2vw] bg-[#024091] drop-shadow-md  hover:bg-[#255798] ${className}`}
+      className={`relative rounded-md oswald-500 text-white shadow-md shadow-black text-[2vw] bg-[#024091] drop-shadow-md  hover:bg-gradient-to-b hover:from-cyan-700 hover:to-cyan-500 ${className}`}
       onClick={onClick}
     >
       <div className='absolute inset-0 shadow-md shadow-black'></div>

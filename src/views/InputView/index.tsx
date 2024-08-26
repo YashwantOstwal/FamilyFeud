@@ -29,14 +29,14 @@ const InputView: React.FC<InputViewProps> = ({ setGuesses, guesses, started }) =
       </Button>
       <div className='basis-4/6 '>
         <input
-          className='outline-none w-full h-[3.5vw] rounded-sm caret-blue-900 text-black text-center uppercase oswald-500 text-[2vw]'
+          className='outline-none w-full h-[3.5vw] rounded-sm caret-blue-900 text-black text-center uppercase oswald-500 text-[2vw] '
           type='text'
           onChange={(event) => handleChange(event.target.value)}
         />
       </div>
       <button
         style={{ boxShadow: '0px 2px 4px 0px inset #86a272' }}
-        className='relative basis-1/6 h-[4vw] rounded-md oswald-500 text-white text-[2vw] bg-[#024091] hover:bg-[#255798] flex justify-center items-center'
+        className='relative basis-1/6 h-[4vw] rounded-md oswald-500 text-white text-[2vw] bg-[#024091] hover:bg-[#255798] flex justify-center items-center hover:bg-gradient-to-b hover:from-cyan-700 hover:to-cyan-500'
         onClick={handleClick}
       >
         <div className='absolute inset-0 shadow-md shadow-black' />
