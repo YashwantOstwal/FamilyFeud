@@ -19,27 +19,27 @@ const GameContainer: React.FC = () => {
     answers: [
       {
         answer: 'media',
-        points: 5,
+        points: 29,
       },
       {
         answer: 'network',
-        points: 10,
+        points: 17,
       },
       {
         answer: 'affairs',
-        points: 15,
+        points: 4,
       },
       {
         answer: 'studies',
-        points: 20,
+        points: 19,
       },
       {
         answer: 'life',
-        points: 25,
+        points: 27,
       },
       {
         answer: 'welfare',
-        points: 30,
+        points: 12,
       },
     ],
   };

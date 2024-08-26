@@ -13,7 +13,7 @@ const AnswersView: React.FC<AnswersViewProps> = ({ answers, guesses, setScore, s
   //outline outline-2 outline-offset-4  outline-[#fff300]
   return (
     <>
-      <div className='w-[32vw] max-w-[900px] max-h-[500px] h-[19vw] border border-white outline-offset-4 outline outline-black outline-2 ring-4 ring-[#353633] oswald-500 '>
+      <div className='w-[32vw] max-w-[900px] max-h-[500px] h-[19vw] border border-white outline-offset-4 outline outline-black outline-2 ring-4 ring-[#353633] oswald-500 select-none'>
         <div className='h-3/4 grid grid-rows-3 grid-cols-2 grid-flow-col oswald-500 text-[2.1vw] text-white'>
           {answers.map((ele, index) => (
             <div key={ele.answer} className='relative border-white border-2 h-full flex'>
