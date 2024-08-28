@@ -12,7 +12,7 @@ const TimerCard: React.FC<TimerCardProps> = ({ seconds, className, started }) =>
         initial={{ opacity: 0 }}
         animate={{ opacity: started ? 1 : 0 }}
         transition={{ duration: 1, delay: 0.5, repeat: Infinity }}
-        className={` w-1/6 rounded-b-md flex justify-center text-[2vw] ${seconds <= 10 ? 'bg-red-600' : 'bg-white'}`}
+        className={` w-1/6 rounded-b-md flex justify-center text-[2vw] ${seconds <= 10 ? 'bg-red-700' : 'bg-white'}`}
       ></motion.div>
       <motion.div
         initial={{ opacity: 0 }}
