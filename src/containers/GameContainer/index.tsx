@@ -13,6 +13,10 @@ interface dataType {
   question: string;
   answers: answerElementType[];
 }
+interface answersSchema {
+  answer: string;
+  points: number;
+}
 let interval: NodeJS.Timer;
 const GameContainer: React.FC = () => {
   const data: dataType = {
@@ -46,15 +50,16 @@ const GameContainer: React.FC = () => {
   };
   const [time, setTime] = useState<number>(40);
   const [score, setScore] = useState<number>(0);
-  const [guesses, setGuesses] = useState<string[]>([]);
+  const [guesses, setGuesses] = useState<answersSchema[]>([]);
+  const [promptWrongGuess, setPromptWrongGuess] = useState<boolean>(false);
   const [started, setStarted] = useState<boolean>(false);
   //Calculating score whenever the "guesses" changes by checking the new entry in the array as one of the answers(no duplication of words in guesses array)
 
   useEffect(() => {
-    const element = data.answers.find((element) => {
-      return element.answer == guesses[guesses.length - 1];
-    });
-    element && setScore(element.points + score);
+    const lastGuessedAnswer = guesses[guesses.length - 1];
+    if (lastGuessedAnswer) {
+      setScore(score + lastGuessedAnswer.points);
+    }
   }, [guesses]);
   useEffect(() => {
     setTimeout(() => {
@@ -79,8 +84,14 @@ const GameContainer: React.FC = () => {
         >
           <>
             <HeaderView started={started} question={data.question} seconds={time} score={score} />
-            <AnswersView guesses={guesses} setScore={setScore} answers={data.answers} score={score} />
-            <InputView started={started} setGuesses={setGuesses} guesses={guesses} />
+            <AnswersView guesses={guesses} answers={data.answers} promptWrongGuess={promptWrongGuess} />
+            <InputView
+              started={started}
+              setGuesses={setGuesses}
+              guesses={guesses}
+              answers={data.answers}
+              setPromptWrongGuess={setPromptWrongGuess}
+            />
           </>
         </motion.div>
       </div>

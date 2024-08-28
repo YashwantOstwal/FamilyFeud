@@ -4,14 +4,17 @@ import Cover from '@components/base/Cover';
 interface CoveredAnswerProps {
   answer: string;
   index: number;
-  guesses: string[];
+  guesses: {
+    answer: string;
+    points: number;
+  }[];
   points: number;
 }
 const CoveredAnswer: React.FC<CoveredAnswerProps> = ({ answer, index, guesses, points }) => {
   return (
     <>
       <Answer answer={answer} points={points} />
-      {!guesses.includes(answer) && <Cover index={index} />}
+      {!guesses.find((guess) => guess.answer === answer) && <Cover index={index} />}
     </>
   );
 };

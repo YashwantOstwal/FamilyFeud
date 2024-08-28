@@ -1,22 +1,43 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, SetStateAction } from 'react';
 import { motion } from 'framer-motion';
 import Button from '@components/base/Button';
 import UpperArrowSVG from '@components/base/UpperArrow';
 
 interface InputViewProps {
-  setGuesses: React.Dispatch<React.SetStateAction<string[]>>;
-  guesses: string[];
+  setGuesses: React.Dispatch<
+    React.SetStateAction<
+      {
+        answer: string;
+        points: number;
+      }[]
+    >
+  >;
+  guesses: {
+    answer: string;
+    points: number;
+  }[];
   started: boolean;
+  answers: {
+    answer: string;
+    points: number;
+  }[];
+  setPromptWrongGuess: React.Dispatch<SetStateAction<boolean>>;
 }
-const InputView: React.FC<InputViewProps> = ({ setGuesses, guesses, started }) => {
+const InputView: React.FC<InputViewProps> = ({ setGuesses, guesses, started, answers, setPromptWrongGuess }) => {
   const inputText = useRef('');
   const handleChange = (input: string) => {
     inputText.current = input.toLowerCase();
   };
 
   const handleClick = () => {
-    if (!guesses.includes(inputText.current)) {
-      setGuesses([...guesses, inputText.current]);
+    const element = answers.find((element) => element.answer === inputText.current);
+    if (element) {
+      setGuesses([...guesses, element]);
+    } else {
+      setPromptWrongGuess(true);
+      setTimeout(() => {
+        setPromptWrongGuess(false);
+      }, 1000);
     }
   };
   return (
