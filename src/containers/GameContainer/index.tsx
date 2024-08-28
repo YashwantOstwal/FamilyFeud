@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 import HeaderView from '@views/HeaderView';
 import AnswersView from '@views/AnswersView';
@@ -52,7 +52,9 @@ const GameContainer: React.FC = () => {
   const [score, setScore] = useState<number>(0);
   const [guesses, setGuesses] = useState<answersSchema[]>([]);
   const [promptWrongGuess, setPromptWrongGuess] = useState<boolean>(false);
+  const [wrongGuessesCount, setWrongGuessesCount] = useState<number>(0);
   const [started, setStarted] = useState<boolean>(false);
+  const inputText = useRef('');
   //Calculating score whenever the "guesses" changes by checking the new entry in the array as one of the answers(no duplication of words in guesses array)
 
   useEffect(() => {
@@ -61,6 +63,11 @@ const GameContainer: React.FC = () => {
       setScore(score + lastGuessedAnswer.points);
     }
   }, [guesses]);
+  useEffect(() => {
+    if (wrongGuessesCount > 3) {
+      setScore((prevScore) => prevScore - 5);
+    }
+  }, [wrongGuessesCount]);
   useEffect(() => {
     setTimeout(() => {
       if (started) {
@@ -84,13 +91,20 @@ const GameContainer: React.FC = () => {
         >
           <>
             <HeaderView started={started} question={data.question} seconds={time} score={score} />
-            <AnswersView guesses={guesses} answers={data.answers} promptWrongGuess={promptWrongGuess} />
+            <AnswersView
+              inputText={inputText}
+              guesses={guesses}
+              answers={data.answers}
+              promptWrongGuess={promptWrongGuess}
+            />
             <InputView
               started={started}
+              inputText={inputText}
               setGuesses={setGuesses}
               guesses={guesses}
               answers={data.answers}
               setPromptWrongGuess={setPromptWrongGuess}
+              setWrongGuessesCount={setWrongGuessesCount}
             />
           </>
         </motion.div>

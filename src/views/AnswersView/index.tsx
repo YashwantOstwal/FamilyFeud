@@ -11,8 +11,9 @@ interface AnswerViewProps {
     points: number;
   }[];
   promptWrongGuess: boolean;
+  inputText: { current: string };
 }
-const AnswersView: React.FC<AnswerViewProps> = ({ answers, guesses, promptWrongGuess }) => {
+const AnswersView: React.FC<AnswerViewProps> = ({ answers, guesses, promptWrongGuess, inputText }) => {
   //outline outline-2 outline-offset-4  outline-[#fff300]
   return (
     <>
@@ -30,7 +31,7 @@ const AnswersView: React.FC<AnswerViewProps> = ({ answers, guesses, promptWrongG
           )}
         </div>
         <div className='h-1/4 flex justify-center items-center bg-white text-[3vw] text-white poppins-bold bg-gradient-to-b from-[#6491df] to-[#135acf] border-2 border-white select-none uppercase overflow-hidden'>
-          {promptWrongGuess && <PromptAnswer>{'inputText.current'}</PromptAnswer>}
+          {promptWrongGuess && <PromptAnswer>{inputText.current}</PromptAnswer>}
         </div>
       </div>
     </>

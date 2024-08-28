@@ -1,4 +1,4 @@
-import React, { useState, useRef, SetStateAction } from 'react';
+import React, { SetStateAction } from 'react';
 import { motion } from 'framer-motion';
 import Button from '@components/base/Button';
 import UpperArrowSVG from '@components/base/UpperArrow';
@@ -21,10 +21,19 @@ interface InputViewProps {
     answer: string;
     points: number;
   }[];
+  inputText: { current: string };
   setPromptWrongGuess: React.Dispatch<SetStateAction<boolean>>;
+  setWrongGuessesCount: React.Dispatch<SetStateAction<number>>;
 }
-const InputView: React.FC<InputViewProps> = ({ setGuesses, guesses, started, answers, setPromptWrongGuess }) => {
-  const inputText = useRef('');
+const InputView: React.FC<InputViewProps> = ({
+  setGuesses,
+  guesses,
+  started,
+  answers,
+  setPromptWrongGuess,
+  setWrongGuessesCount,
+  inputText,
+}) => {
   const handleChange = (input: string) => {
     inputText.current = input.toLowerCase();
   };
@@ -35,6 +44,7 @@ const InputView: React.FC<InputViewProps> = ({ setGuesses, guesses, started, ans
       setGuesses([...guesses, element]);
     } else {
       setPromptWrongGuess(true);
+      setWrongGuessesCount((prevCount) => ++prevCount);
       setTimeout(() => {
         setPromptWrongGuess(false);
       }, 1000);
