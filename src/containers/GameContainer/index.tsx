@@ -96,6 +96,7 @@ const GameContainer: React.FC = () => {
               guesses={guesses}
               answers={data.answers}
               promptWrongGuess={promptWrongGuess}
+              wrongGuessesCount={wrongGuessesCount}
             />
             <InputView
               started={started}

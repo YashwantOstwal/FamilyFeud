@@ -25,6 +25,7 @@ interface InputViewProps {
   setPromptWrongGuess: React.Dispatch<SetStateAction<boolean>>;
   setWrongGuessesCount: React.Dispatch<SetStateAction<number>>;
 }
+let controlInterval: NodeJS.Timer;
 const InputView: React.FC<InputViewProps> = ({
   setGuesses,
   guesses,
@@ -43,11 +44,12 @@ const InputView: React.FC<InputViewProps> = ({
     if (element) {
       setGuesses([...guesses, element]);
     } else {
+      clearInterval(controlInterval);
       setPromptWrongGuess(true);
       setWrongGuessesCount((prevCount) => ++prevCount);
-      setTimeout(() => {
+      controlInterval = setTimeout(() => {
         setPromptWrongGuess(false);
-      }, 1000);
+      }, 600);
     }
   };
   return (

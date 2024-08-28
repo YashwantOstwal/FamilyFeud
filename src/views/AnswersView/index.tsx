@@ -12,8 +12,15 @@ interface AnswerViewProps {
   }[];
   promptWrongGuess: boolean;
   inputText: { current: string };
+  wrongGuessesCount: number;
 }
-const AnswersView: React.FC<AnswerViewProps> = ({ answers, guesses, promptWrongGuess, inputText }) => {
+const AnswersView: React.FC<AnswerViewProps> = ({
+  answers,
+  guesses,
+  promptWrongGuess,
+  inputText,
+  wrongGuessesCount,
+}) => {
   //outline outline-2 outline-offset-4  outline-[#fff300]
   return (
     <>
@@ -26,12 +33,15 @@ const AnswersView: React.FC<AnswerViewProps> = ({ answers, guesses, promptWrongG
           ))}
           {promptWrongGuess && (
             <div className='absolute inset-0 flex justify-center '>
-              <span className='text-red-700 text-[10vw] oswald-700 '>X</span>
+              <span style={{ textShadow: '4px 4px 10px #000000' }} className='text-red-700 text-[10vw] oswald-700 '>
+                {'X '.repeat(Math.min(wrongGuessesCount, 3))}
+              </span>
             </div>
           )}
         </div>
+
         <div className='h-1/4 flex justify-center items-center bg-white text-[3vw] text-white poppins-bold bg-gradient-to-b from-[#6491df] to-[#135acf] border-2 border-white select-none uppercase overflow-hidden'>
-          {promptWrongGuess && <PromptAnswer>{inputText.current}</PromptAnswer>}
+          {promptWrongGuess && inputText.current && <PromptAnswer>{inputText.current}</PromptAnswer>}
         </div>
       </div>
     </>
