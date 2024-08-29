@@ -41,7 +41,7 @@ const InputView: React.FC<InputViewProps> = ({
 
   const handleClick = () => {
     const element = answers.find((element) => element.answer === inputText.current);
-    if (element) {
+    if (element && !guesses.includes(element)) {
       setGuesses([...guesses, element]);
     } else {
       clearInterval(controlInterval);

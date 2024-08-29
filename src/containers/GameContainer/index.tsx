@@ -59,9 +59,7 @@ const GameContainer: React.FC = () => {
 
   useEffect(() => {
     const lastGuessedAnswer = guesses[guesses.length - 1];
-    if (lastGuessedAnswer) {
-      setScore(score + lastGuessedAnswer.points);
-    }
+    lastGuessedAnswer && setScore(score + lastGuessedAnswer.points);
   }, [guesses]);
   useEffect(() => {
     if (wrongGuessesCount > 3) {
