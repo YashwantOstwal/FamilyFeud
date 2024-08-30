@@ -1,7 +1,7 @@
-export default function PromptAnswer({ children }: { children: string }) {
-  return (
-    <div className='px-[5%] h-fit leading-tight bg-[#83031b] border-2 border-[#db062e] rounded-md oswald-500 text-center'>
-      {children}
-    </div>
-  );
+import { motion } from 'framer-motion';
+export default function PromptAnswer({ children, className }: { children: string; className: string }) {
+  /*      initial={{ rotate: '0deg' }}
+      animate={{ rotate: ['-2deg', '0deg', '2deg', '0deg'] }}
+      transition={{ duration: 0.15, repeat: 2 }}*/
+  return <div className={`px-[5%] h-fit leading-tight rounded-lg oswald-500 text-center ${className}`}>{children}</div>;
 }

@@ -3,27 +3,19 @@ import { motion } from 'framer-motion';
 import Button from '@components/base/Button';
 import UpperArrowSVG from '@components/base/UpperArrow';
 
+interface answers {
+  answer: string;
+  points: number;
+}
 interface InputViewProps {
-  setGuesses: React.Dispatch<
-    React.SetStateAction<
-      {
-        answer: string;
-        points: number;
-      }[]
-    >
-  >;
-  guesses: {
-    answer: string;
-    points: number;
-  }[];
+  setGuesses: React.Dispatch<React.SetStateAction<answers[]>>;
+  guesses: answers[];
   started: boolean;
-  answers: {
-    answer: string;
-    points: number;
-  }[];
+  answers: answers[];
   inputText: { current: string };
   setPromptWrongGuess: React.Dispatch<SetStateAction<boolean>>;
   setWrongGuessesCount: React.Dispatch<SetStateAction<number>>;
+  setAlreadyGuessed: React.Dispatch<SetStateAction<boolean>>;
 }
 let controlInterval: NodeJS.Timer;
 const InputView: React.FC<InputViewProps> = ({
@@ -33,6 +25,7 @@ const InputView: React.FC<InputViewProps> = ({
   answers,
   setPromptWrongGuess,
   setWrongGuessesCount,
+  setAlreadyGuessed,
   inputText,
 }) => {
   const handleChange = (input: string) => {
@@ -40,16 +33,22 @@ const InputView: React.FC<InputViewProps> = ({
   };
 
   const handleClick = () => {
-    const element = answers.find((element) => element.answer === inputText.current);
-    if (element && !guesses.includes(element)) {
-      setGuesses([...guesses, element]);
-    } else {
+    const handleGuesses = (updateHandler: React.Dispatch<SetStateAction<boolean>>) => {
       clearInterval(controlInterval);
-      setPromptWrongGuess(true);
-      setWrongGuessesCount((prevCount) => ++prevCount);
+      updateHandler(true);
       controlInterval = setTimeout(() => {
-        setPromptWrongGuess(false);
+        updateHandler(false);
       }, 600);
+    };
+    const element: answers | undefined = answers.find((element) => element.answer === inputText.current);
+    const alreadyGuessed: answers | undefined = guesses.find((guess) => guess.answer === element?.answer);
+    if (element && !alreadyGuessed) {
+      setGuesses([...guesses, element]);
+    } else if (alreadyGuessed) {
+      handleGuesses(setAlreadyGuessed);
+    } else {
+      setWrongGuessesCount((prevCount) => ++prevCount);
+      handleGuesses(setPromptWrongGuess);
     }
   };
   return (

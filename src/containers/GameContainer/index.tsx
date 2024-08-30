@@ -54,6 +54,7 @@ const GameContainer: React.FC = () => {
   const [promptWrongGuess, setPromptWrongGuess] = useState<boolean>(false);
   const [wrongGuessesCount, setWrongGuessesCount] = useState<number>(0);
   const [started, setStarted] = useState<boolean>(false);
+  const [alreadyGuessed, setAlreadyGuessed] = useState<boolean>(false);
   const inputText = useRef('');
   //Calculating score whenever the "guesses" changes by checking the new entry in the array as one of the answers(no duplication of words in guesses array)
 
@@ -66,15 +67,15 @@ const GameContainer: React.FC = () => {
       setScore((prevScore) => prevScore - 5);
     }
   }, [wrongGuessesCount]);
-  useEffect(() => {
-    setTimeout(() => {
-      if (started) {
-        interval = setInterval(() => {
-          setTime((prevState) => --prevState);
-        }, 1000);
-      }
-    }, 1000);
-  }, [started]);
+  // useEffect(() => {
+  //   setTimeout(() => {
+  //     if (started) {
+  //       interval = setInterval(() => {
+  //         setTime((prevState) => --prevState);
+  //       }, 1000);
+  //     }
+  //   }, 1000);
+  // }, [started]);
   if (time == 0) {
     clearInterval(interval);
   }
@@ -95,6 +96,7 @@ const GameContainer: React.FC = () => {
               answers={data.answers}
               promptWrongGuess={promptWrongGuess}
               wrongGuessesCount={wrongGuessesCount}
+              alreadyGuessed={alreadyGuessed}
             />
             <InputView
               started={started}
@@ -104,6 +106,7 @@ const GameContainer: React.FC = () => {
               answers={data.answers}
               setPromptWrongGuess={setPromptWrongGuess}
               setWrongGuessesCount={setWrongGuessesCount}
+              setAlreadyGuessed={setAlreadyGuessed}
             />
           </>
         </motion.div>
