@@ -67,15 +67,15 @@ const GameContainer: React.FC = () => {
       setScore((prevScore) => prevScore - 5);
     }
   }, [wrongGuessesCount]);
-  // useEffect(() => {
-  //   setTimeout(() => {
-  //     if (started) {
-  //       interval = setInterval(() => {
-  //         setTime((prevState) => --prevState);
-  //       }, 1000);
-  //     }
-  //   }, 1000);
-  // }, [started]);
+  useEffect(() => {
+    setTimeout(() => {
+      if (started) {
+        interval = setInterval(() => {
+          setTime((prevState) => --prevState);
+        }, 1000);
+      }
+    }, 1000);
+  }, [started]);
   if (time == 0) {
     clearInterval(interval);
   }

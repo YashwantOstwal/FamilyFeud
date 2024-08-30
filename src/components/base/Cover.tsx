@@ -1,9 +1,10 @@
+import { motion } from 'framer-motion';
 interface CoverProps {
   index: number;
 }
 const Cover: React.FC<CoverProps> = ({ index }) => {
   return (
-    <div>
+    <motion.div exit={{ rotateX: '-90deg' }} className='relative h-full origin-top'>
       <div className='absolute inset-0 bg-[#135acf]' />
       <div
         style={{ borderRadius: '0px 0px 100% 100%', boxShadow: '0px -5px 13px 5px inset #4576cc' }}
@@ -17,7 +18,7 @@ const Cover: React.FC<CoverProps> = ({ index }) => {
           {index + 1}
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 };
 export default Cover;
